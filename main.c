@@ -1,8 +1,6 @@
 #include <stddef.h>
+#include "unittest.h"
 
-#define ASSERT(expr) if(!(expr)) { _test_failed += 1; return; }
-
-static int _test_failed = 0;
 
 typedef struct {
     size_t primary_key;
@@ -45,7 +43,7 @@ void test_can_create_product(void)
 
 int main(void)
 {
-    _test_failed = 0;
+    TEST_INIT();
     test_can_create_product();
-    return _test_failed;
+    return TEST_FAILED();
 }
