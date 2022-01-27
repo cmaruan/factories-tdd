@@ -15,6 +15,7 @@ struct ProductFactory {
 
 void *ProductFactory_create() {
     static product_t product;
+    product.primary_key = 1;
     return &product;
 }
 
