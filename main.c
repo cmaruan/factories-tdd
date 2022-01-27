@@ -4,13 +4,17 @@
 
 static int _test_failed = 0;
 
+typedef struct {
+    size_t primary_key;
+} product_t;
+
 // The struct holding methods to operate on products
 struct ProductFactory {
     void *(*create)(void);
 };
 
 void *ProductFactory_create() {
-    static void *product = NULL;
+    static product_t product;
     return &product;
 }
 
@@ -32,9 +36,9 @@ static struct Factories *factories = &_factories;
 
 void test_can_create_product(void)
 {
-    void *product = factories->product->create();
+    product_t *product = (product_t *)factories->product->create();
     ASSERT(product != NULL)
-    // ASSERT(product->primary_key > 0);
+    ASSERT(product->primary_key > 0);
 }
 
 
