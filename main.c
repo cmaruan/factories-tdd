@@ -10,7 +10,8 @@ struct ProductFactory {
 };
 
 void *ProductFactory_create() {
-    return NULL;
+    static void *product = NULL;
+    return &product;
 }
 
 static struct ProductFactory _product_factory = {
@@ -32,6 +33,7 @@ static struct Factories *factories = &_factories;
 void test_can_create_product(void)
 {
     void *product = factories->product->create();
+    ASSERT(product != NULL)
     // ASSERT(product->primary_key > 0);
 }
 
