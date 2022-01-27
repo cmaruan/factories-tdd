@@ -1,5 +1,10 @@
 all: main
 
-
 main: main.c
-	gcc -c main.c -o main
+	@gcc main.c -o main
+
+clean:
+	@rm -rf main
+
+test: main
+	@./main; echo "Program returned: $$?"
