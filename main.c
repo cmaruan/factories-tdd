@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 #define ASSERT(expr) if(!(expr)) { _test_failed += 1; return; }
 
 static int _test_failed = 0;
@@ -7,13 +9,23 @@ struct ProductFactory {
     void *(*create)(void);
 };
 
+void *ProductFactory_create() {
+    return NULL;
+}
+
+static struct ProductFactory _product_factory = {
+    .create = ProductFactory_create
+};
+
 // Struct to hold all future factories
 struct Factories {
     struct ProductFactory *product;
 };
 
 // Static entrypoint for the factories
-static struct Factories _factories;
+static struct Factories _factories = {
+    .product = &_product_factory
+};
 static struct Factories *factories = &_factories;
 
 
