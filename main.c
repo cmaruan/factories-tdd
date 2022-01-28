@@ -13,7 +13,7 @@ void test_can_create_product(void)
 void test_can_destroy_product(void)
 {
     product_t *product = factories->product->create();
-    factories->product->destroy(&product);
+    factories->product->destroy((void **)&product);
     ASSERT(product == NULL);
 }
 
