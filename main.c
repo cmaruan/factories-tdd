@@ -21,6 +21,7 @@ void test_create_product_with_price(void)
 {
     void *product = New(ProductType, 1, "price", 25.0);
     ASSERT(ProductPrice(product) == 25.0);
+    Destroy(&product);
 }
 
 int main(void)
