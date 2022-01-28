@@ -6,6 +6,7 @@
 // The struct holding methods to operate on products
 struct ProductFactory {
     void *(*create)(void);
+    void (*destroy)(void **);
 };
 
 extern struct ProductFactory _product_factory;
