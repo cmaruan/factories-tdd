@@ -26,7 +26,7 @@ void *New(struct ClassType *type, ...)
 void Destroy(void **self)
 {
     assert(self);
-    struct ClassType *type = GET_TYPE_OF(self);
+    struct ClassType *type = GET_TYPE_OF(*self);
     if (type && type->dtor) {
         *self = type->dtor(*self);
     }
