@@ -6,8 +6,9 @@
 
 object_t *New(struct ClassType *type, ...)
 {
-    assert(type && type->id && type->size);
+    assert(type && type->size);
     object_t *obj = calloc(1, type->size);
+    *(struct ClassType **)obj = type;
     if (type->ctor) {
         va_list ap;
         va_start(ap, type);
