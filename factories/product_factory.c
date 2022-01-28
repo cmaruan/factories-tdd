@@ -9,9 +9,11 @@ struct ProductFactory _product_factory = {
 };
 
 void *ProductFactory_create() {
-    return NULL;
+    object_t *obj = New(ProductType);
+    ProductSetPrimaryKey(obj, 1);
+    return obj;
 }
 
 void ProductFactory_destroy(void **product_ptr) {
-    *product_ptr = NULL;
+    Destroy(product_ptr);
 }
