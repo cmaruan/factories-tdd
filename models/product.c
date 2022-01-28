@@ -20,7 +20,7 @@ struct ClassType *ProductType = &_ProductType;
 
 void * ProductType_ctor(void *_self, va_list *ap)
 {
-    assert(_self);
+    assert(_self && InstanceOf(_self, ProductType));
     product_t *self = _self;
     int args = va_arg(*ap, int);
     for (int a = 0; a < args; a++) {
@@ -36,21 +36,21 @@ void * ProductType_ctor(void *_self, va_list *ap)
 
 size_t ProductPrimaryKey(void *_self)
 {
-    assert(_self);
+    assert(_self && InstanceOf(_self, ProductType));
     product_t *self = _self;
     return self->primary_key;
 }
 
 int ProductSetPrimaryKey(void *_self, size_t pk)
 {
-    assert(_self);
+    assert(_self && InstanceOf(_self, ProductType));
     product_t *self = _self;
     self->primary_key = pk;
     return 1;
 }
 
 double ProductPrice(void *_self) {
-    assert(_self);
+    assert(_self && InstanceOf(_self, ProductType));
     product_t *self = _self;
     return self->price;
 }
