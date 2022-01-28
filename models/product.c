@@ -28,6 +28,9 @@ void * ProductType_ctor(void *_self, va_list *ap)
         if (strcmp(field, "price") == 0) {
             double price = va_arg(*ap, double);
             self->price = price;
+        } else if (strcmp(field, "pk") == 0) {
+            int pk = va_arg(*ap, int);
+            self->primary_key = pk;
         }
     }
     return self;
