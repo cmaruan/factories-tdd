@@ -8,11 +8,7 @@ struct Factories {
     struct ProductFactory *product;
 };
 
-// Static entrypoint for the factories
-static struct Factories _factories = {
-    .product = &_product_factory
-};
-static struct Factories *factories = &_factories;
+extern struct Factories *factories;
 
 
 #endif // _FACTORIES_H_

@@ -8,15 +8,7 @@ struct ProductFactory {
     void *(*create)(void);
 };
 
-void *ProductFactory_create() {
-    static product_t product;
-    product.primary_key = 1;
-    return &product;
-}
-
-static struct ProductFactory _product_factory = {
-    .create = ProductFactory_create
-};
+extern struct ProductFactory _product_factory;
 
 
 #endif // _PRODUCT_FACTORY_H
