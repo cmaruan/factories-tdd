@@ -6,8 +6,8 @@
 
 extern struct ClassType *ProductType;
 
-size_t ProductPrimaryKey(void *product);
-int ProductSetPrimaryKey(void *_product, size_t pk);
-
+size_t  ProductPrimaryKey(void *self);
+int     ProductSetPrimaryKey(void *self, size_t pk);
+double  ProductPrice(void *self);
 
 #endif // _PRODUCT_H_
