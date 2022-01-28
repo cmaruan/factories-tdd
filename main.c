@@ -1,36 +1,6 @@
-#include <stddef.h>
+
 #include "unittest.h"
-
-
-typedef struct {
-    size_t primary_key;
-} product_t;
-
-// The struct holding methods to operate on products
-struct ProductFactory {
-    void *(*create)(void);
-};
-
-void *ProductFactory_create() {
-    static product_t product;
-    product.primary_key = 1;
-    return &product;
-}
-
-static struct ProductFactory _product_factory = {
-    .create = ProductFactory_create
-};
-
-// Struct to hold all future factories
-struct Factories {
-    struct ProductFactory *product;
-};
-
-// Static entrypoint for the factories
-static struct Factories _factories = {
-    .product = &_product_factory
-};
-static struct Factories *factories = &_factories;
+#include "factories/factories.h"
 
 
 void test_can_create_product(void)

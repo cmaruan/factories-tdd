@@ -1,7 +1,7 @@
 all: main
 
 main: main.c
-	@gcc -g main.c -o main
+	@gcc -g main.c -o main -I./include
 
 clean:
 	@rm -rf main
