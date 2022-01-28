@@ -9,9 +9,7 @@ struct ProductFactory _product_factory = {
 };
 
 void *ProductFactory_create() {
-    static product_t product;
-    product.primary_key = 1;
-    return &product;
+    return NULL;
 }
 
 void ProductFactory_destroy(void **product_ptr) {

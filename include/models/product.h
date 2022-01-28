@@ -3,11 +3,7 @@
 
 #include <stddef.h>
 
-typedef struct {
-    size_t primary_key;
-} product_t;
-
-
+size_t ProductPrimaryKey(void *product);
 
 
 #endif // _PRODUCT_H_
