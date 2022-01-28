@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <string.h>
 #include "models/product.h"
 
 typedef struct {
@@ -7,13 +8,31 @@ typedef struct {
     double price;
 } product_t;
 
+void * ProductType_ctor(void *_self, va_list *ap);
 
 static struct ClassType _ProductType = {
     .size = sizeof(product_t),
-    .ctor = NULL,
+    .ctor = ProductType_ctor,
     .dtor = NULL,
 };
 struct ClassType *ProductType = &_ProductType;
+
+
+void * ProductType_ctor(void *_self, va_list *ap)
+{
+    assert(_self);
+    product_t *self = _self;
+    int args = va_arg(*ap, int);
+    for (int a = 0; a < args; a++) {
+        const char *field = va_arg(*ap, const char *);
+        if (strcmp(field, "price") == 0) {
+            double price = va_arg(*ap, double);
+            self->price = price;
+        }
+    }
+    return self;
+}
+
 
 size_t ProductPrimaryKey(void *_self)
 {
