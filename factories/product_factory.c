@@ -9,7 +9,7 @@ struct ProductFactory _product_factory = {
 };
 
 void *ProductFactory_create() {
-    object_t *obj = New(ProductType);
+    void *obj = New(ProductType);
     ProductSetPrimaryKey(obj, 1);
     return obj;
 }

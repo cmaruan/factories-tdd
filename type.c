@@ -4,10 +4,10 @@
 
 #include "type.h"
 
-object_t *New(struct ClassType *type, ...)
+void *New(struct ClassType *type, ...)
 {
     assert(type && type->size);
-    object_t *obj = calloc(1, type->size);
+    void *obj = calloc(1, type->size);
     *(struct ClassType **)obj = type;
     if (type->ctor) {
         va_list ap;
@@ -17,7 +17,7 @@ object_t *New(struct ClassType *type, ...)
     }
     return obj;
 }
-void Destroy(object_t **self)
+void Destroy(void **self)
 {
     assert(self);
     struct ClassType *type = *(struct ClassType **)self;

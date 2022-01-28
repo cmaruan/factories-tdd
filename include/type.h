@@ -4,16 +4,14 @@
 #include <stddef.h>
 #include <stdarg.h>
 
-typedef void object_t;
-
 struct ClassType {
     size_t size;
-    object_t *(*ctor)(object_t *self, va_list *ap);
-    object_t *(*dtor)(object_t *self);
+    void *(*ctor)(void *self, va_list *ap);
+    void *(*dtor)(void *self);
 };
 
-object_t *New(struct ClassType *type, ...);
-void Destroy(object_t **self);
+void *New(struct ClassType *type, ...);
+void Destroy(void **self);
 
 
 #endif // _TYPE_H_
