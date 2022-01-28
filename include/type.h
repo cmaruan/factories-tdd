@@ -12,6 +12,7 @@ struct ClassType {
 
 void *New(struct ClassType *type, ...);
 void Destroy(void **self);
+int InstanceOf(const void *self, const struct ClassType *type);
 
 
 #endif // _TYPE_H_
