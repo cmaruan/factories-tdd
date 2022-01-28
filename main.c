@@ -19,8 +19,8 @@ void test_can_destroy_product_from_factory(void)
 
 void test_create_product_with_price(void)
 {
-    void *product = New(ProductType, "price", 25);
-    ASSERT(ProductPrice(product) == 25);
+    void *product = New(ProductType, 1, "price", 25.0);
+    ASSERT(ProductPrice(product) == 25.0);
 }
 
 int main(void)
