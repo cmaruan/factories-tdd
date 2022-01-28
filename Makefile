@@ -3,7 +3,7 @@ CFLAGS= -g
 
 all: main
 
-main.o:
+main.o: main.c
 	gcc $(CFLAGS) -I$(INCDIR) -c main.c -o main.o
 
 product.o: models/product.c
