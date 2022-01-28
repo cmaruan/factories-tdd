@@ -22,4 +22,7 @@ clean:
 	rm -rf main **/*.o *.o
 
 test: main
-	@./main; echo "Program returned: $$?"
+	@echo "---------------------------------"
+	@echo "Running tests ..."
+	@./main; echo "Tests that failed: $$?"
+	@echo "---------------------------------"
