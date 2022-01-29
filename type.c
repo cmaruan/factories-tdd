@@ -40,3 +40,39 @@ int InstanceOf(const void *self, const struct ClassType *type)
     assert(type);
     return self != NULL && GET_TYPE_OF(self) == type;
 }
+
+int HasAttr(const void *self, const char *attr)
+{
+    assert(self);
+    const struct ClassType *type = GET_TYPE_OF(self);
+    return type->has_attr && type->has_attr(self, attr);
+}
+
+int GetAttr(const void *self, const char *attr, ...)
+{
+    assert(self);
+    const struct ClassType *type = GET_TYPE_OF(self);
+    int rv = 0;
+    va_list ap;
+    if (type && type->get_attr) {
+        va_list ap;
+        va_start(ap, attr);
+        rv = type->get_attr(self, attr, &ap);
+        va_end(ap);
+    }
+    return rv;
+}
+int SetAttr(void *self, const char *attr, ...)
+{
+    assert(self);
+    const struct ClassType *type = GET_TYPE_OF(self);
+    int rv = 0;
+    va_list ap;
+    if (type && type->set_attr) {
+        va_list ap;
+        va_start(ap, attr);
+        rv = type->set_attr(self, attr, &ap);
+        va_end(ap);
+    }
+    return rv;
+}
